@@ -11,8 +11,8 @@ class GameCoordinator {
     this.fruitDisplay = document.getElementById('fruit-display');
     this.mainMenu = document.getElementById('main-menu-container');
     this.gameStartButton = document.getElementById('game-start');
-    this.pauseButton = document.getElementById('pause-button');
-    this.soundButton = document.getElementById('sound-button');
+    this.pauseButton = document.getElementById('pause-btn-wrapper');
+    this.soundButton = document.getElementById('sound-btn-wrapper');
     this.leftCover = document.getElementById('left-cover');
     this.rightCover = document.getElementById('right-cover');
     this.pausedText = document.getElementById('paused-text');

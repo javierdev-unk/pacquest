@@ -181,10 +181,14 @@ body {
 @media (orientation: portrait) {
   .game-ui {
     height: 72%;
+    margin-top: 70px;
+    justify-content: flex-start;
   }
 
   .movement-buttons {
-    height: 34%;
+    height: 28%;
+    justify-content: flex-end;
+    padding-bottom: 50px;
   }
 }
 
@@ -406,7 +410,9 @@ body {
   position: fixed;
   width: 100%;
   box-sizing: border-box;
-  padding-bottom: env(safe-area-inset-bottom, 0);
+  justify-content: flex-end;
+  /* Push arrows lower */
+  padding-bottom: max(env(safe-area-inset-bottom, 0), 20px);
 
   .row {
     display: flex;

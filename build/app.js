@@ -1121,8 +1121,8 @@ class GameCoordinator {
     this.fruitDisplay = document.getElementById('fruit-display');
     this.mainMenu = document.getElementById('main-menu-container');
     this.gameStartButton = document.getElementById('game-start');
-    this.pauseButton = document.getElementById('pause-button');
-    this.soundButton = document.getElementById('sound-button');
+    this.pauseButton = document.getElementById('pause-btn-wrapper');
+    this.soundButton = document.getElementById('sound-btn-wrapper');
     this.leftCover = document.getElementById('left-cover');
     this.rightCover = document.getElementById('right-cover');
     this.pausedText = document.getElementById('paused-text');
@@ -3280,211 +3280,408 @@ const triviaData = [
     description: "Técnica de programación donde una función se llama a sí misma para resolver un problema.",
     question: "¿Qué hace una función recursiva?",
     options: ["Se borra a sí misma", "Se llama a sí misma", "Apaga el equipo", "Solo suma 1"],
+  },
+  {
+    concept: "Linux",
+    title: "Sistema Operativo Linux",
+    description: "Un sistema operativo de código abierto basado en Unix, muy popular en servidores y desarrollo de software.",
+    question: "¿Qué es Linux?",
+    options: ["Un programa de edición", "Un sistema operativo de código abierto", "Una marca de discos duros", "Un tipo de cable de red"],
+    correctIndex: 1
+  },
+  {
+    concept: "Unix",
+    title: "Sistema Operativo Unix",
+    description: "Un sistema operativo multiusuario y multitarea desarrollado en los años 70, base de macOS y Linux.",
+    question: "¿De cuál sistema operativo derivan macOS y Linux?",
+    options: ["Windows", "MS-DOS", "Unix", "Android"],
+    correctIndex: 2
+  },
+  {
+    concept: "Compresión de Datos",
+    title: "Reducción de Tamaño",
+    description: "Proceso de reducir el tamaño de un archivo para que ocupe menos espacio en el disco o se envíe más rápido.",
+    question: "¿Para qué sirve comprimir un archivo (ej. en formato ZIP)?",
+    options: ["Para que ocupe menos espacio", "Para cambiar su color", "Para que sea más ruidoso", "Para instalar más RAM"],
+    correctIndex: 0
+  },
+  {
+    concept: "LAN",
+    title: "Red de Área Local",
+    description: "Una red de computadoras que abarca un área reducida, como una casa, oficina o edificio.",
+    question: "¿Qué significa LAN?",
+    options: ["Local Area Network", "Large Android Node", "Linux Apple Network", "Logic Access Name"],
+    correctIndex: 0
+  },
+  {
+    concept: "WAN",
+    title: "Red de Área Amplia",
+    description: "Una red de computadoras que se extiende sobre una gran distancia geográfica. Internet es la WAN más grande.",
+    question: "¿Qué tipo de red es Internet?",
+    options: ["LAN", "PAN", "WAN", "MAN"],
+    correctIndex: 2
+  },
+  {
+    concept: "Banda Ancha",
+    title: "Ancho de Banda",
+    description: "La cantidad máxima de datos que se pueden transmitir a través de una conexión de internet en un tiempo determinado.",
+    question: "¿Qué mide el ancho de banda?",
+    options: ["El peso del monitor", "La velocidad de transmisión de datos", "El brillo de la pantalla", "La cantidad de teclas"],
+    correctIndex: 1
+  },
+  {
+    concept: "Latencia",
+    title: "Retraso en la Red",
+    description: "El tiempo que tarda un paquete de datos en viajar desde su origen hasta su destino.",
+    question: "¿Qué es la latencia en internet?",
+    options: ["El retraso o lag en la conexión", "La marca del router", "El costo mensual", "La cantidad de virus"],
+    correctIndex: 0
+  },
+  {
+    concept: "Pixel",
+    title: "Píxel",
+    description: "La unidad más pequeña y básica de una imagen digital o pantalla que puede mostrar un color.",
+    question: "¿Qué es un píxel?",
+    options: ["Un tipo de memoria", "La unidad mínima de una imagen en pantalla", "Un programa para escribir", "Un cable de energía"],
+    correctIndex: 1
+  },
+  {
+    concept: "Resolución",
+    title: "Resolución de Pantalla",
+    description: "El número total de píxeles que puede ser mostrado en la pantalla, generalmente expresado como ancho x alto (ej. 1920x1080).",
+    question: "¿A qué se refiere la resolución 1080p?",
+    options: ["Al precio del monitor", "Al número de teclas", "A la cantidad de píxeles en pantalla", "A la velocidad del ventilador"],
+    correctIndex: 2
+  },
+  {
+    concept: "Tasa de Refresco",
+    title: "Refresh Rate (Hz)",
+    description: "La cantidad de veces por segundo que la pantalla actualiza su imagen. Se mide en Hercios (Hz).",
+    question: "¿En qué se mide la tasa de refresco de un monitor?",
+    options: ["En Litros", "En Metros", "En Hercios (Hz)", "En Kilogramos"],
+    correctIndex: 2
+  },
+  {
+    concept: "Cache",
+    title: "Memoria Caché",
+    description: "Memoria temporal muy rápida que guarda datos frecuentemente usados para acceder a ellos más rápido.",
+    question: "¿Para qué sirve la memoria caché?",
+    options: ["Para jugar mejor", "Para acceder a datos frecuentes más rápido", "Para apagar la computadora", "Para imprimir documentos"],
+    correctIndex: 1
+  },
+  {
+    concept: "VPN",
+    title: "Red Privada Virtual",
+    description: "Crea una conexión segura y cifrada sobre una red menos segura, como Internet, ocultando la dirección IP real.",
+    question: "¿Para qué se utiliza una VPN?",
+    options: ["Para comprar juegos", "Para navegar de forma segura y privada", "Para limpiar el teclado", "Para crear virus"],
+    correctIndex: 1
+  },
+  {
+    concept: "Antivirus",
+    title: "Software Antivirus",
+    description: "Programa diseñado para prevenir, buscar, detectar y eliminar virus informáticos y otro software malicioso.",
+    question: "¿Cuál es la función principal de un Antivirus?",
+    options: ["Acelerar internet", "Detectar y eliminar software malicioso", "Hacer los juegos más rápidos", "Guardar fotos"],
+    correctIndex: 1
+  },
+  {
+    concept: "Encriptación",
+    title: "Cifrado",
+    description: "El proceso de convertir información legible en un formato ilegible para protegerla de accesos no autorizados.",
+    question: "¿Qué hace la encriptación de extremo a extremo?",
+    options: ["Borra los mensajes", "Asegura que solo el emisor y receptor puedan leer el mensaje", "Traduce idiomas", "Mejora los gráficos"],
+    correctIndex: 1
+  },
+  {
+    concept: "Frontend",
+    title: "Desarrollo Frontend",
+    description: "La parte de un sitio web o aplicación con la que interactúa directamente el usuario (lo que se ve).",
+    question: "¿De qué se encarga un desarrollador Frontend?",
+    options: ["De los servidores", "De la base de datos", "De la interfaz visual y experiencia de usuario", "De instalar cables"],
+    correctIndex: 2
+  },
+  {
+    concept: "Backend",
+    title: "Desarrollo Backend",
+    description: "La parte de un sitio web o aplicación que funciona detrás de escena, incluyendo el servidor y la base de datos.",
+    question: "¿Qué gestiona principalmente el Backend?",
+    options: ["Los colores de la web", "El servidor, la lógica y la base de datos", "El diseño del logo", "El mouse del usuario"],
+    correctIndex: 1
+  },
+  {
+    concept: "Full Stack",
+    title: "Desarrollador Full Stack",
+    description: "Un programador que tiene habilidades tanto en el desarrollo Frontend como en el Backend.",
+    question: "¿Qué hace un desarrollador Full Stack?",
+    options: ["Solo arregla teclados", "Solo diseña logos", "Trabaja en el Frontend y en el Backend", "Solo instala Windows"],
+    correctIndex: 2
+  },
+  {
+    concept: "C++",
+    title: "Lenguaje C++",
+    description: "Un potente lenguaje de programación de propósito general, ampliamente usado en videojuegos y sistemas operativos.",
+    question: "¿Para qué es famoso el lenguaje C++?",
+    options: ["Para hacer páginas web simples", "Por su alto rendimiento en videojuegos y sistemas", "Por ser el lenguaje más fácil", "Por ser usado solo en calculadoras"],
+    correctIndex: 1
+  },
+  {
+    concept: "Python",
+    title: "Lenguaje Python",
+    description: "Un lenguaje de programación versátil y fácil de aprender, muy popular en inteligencia artificial y análisis de datos.",
+    question: "¿En qué área destaca especialmente Python actualmente?",
+    options: ["En el diseño de teclados", "En la inteligencia artificial y análisis de datos", "En la impresión 3D", "En la refrigeración de PC"],
+    correctIndex: 1
+  },
+  {
+    concept: "Java",
+    title: "Lenguaje Java",
+    description: "Un lenguaje de programación orientado a objetos, famoso por su filosofía 'Escribe una vez, ejecuta en cualquier lugar'.",
+    question: "¿Qué caracteriza al lenguaje Java?",
+    options: ["Solo funciona en Windows", "Puede ejecutarse en múltiples plataformas", "Es solo para hacer dibujos", "No usa código"],
+    correctIndex: 1
+  },
+  {
+    concept: "JSON",
+    title: "Notación de Objetos JS",
+    description: "Un formato de texto ligero para el intercambio de datos, fácil de leer para humanos y máquinas.",
+    question: "¿Para qué se utiliza JSON?",
+    options: ["Para comprimir videos", "Para intercambiar datos entre cliente y servidor", "Para limpiar la pantalla", "Para apagar la PC"],
+    correctIndex: 1
+  },
+  {
+    concept: "Terminal",
+    title: "Línea de Comandos",
+    description: "Una interfaz basada en texto que permite a los usuarios interactuar con el sistema operativo escribiendo comandos.",
+    question: "¿Qué haces en una Terminal (o Consola)?",
+    options: ["Jugar con el mouse", "Escribir comandos de texto al sistema operativo", "Dibujar con el cursor", "Grabar audios"],
+    correctIndex: 1
+  },
+  {
+    concept: "Bugs vs Errores",
+    title: "Tipos de Errores",
+    description: "Un bug es un defecto lógico en el código, mientras que un error de sintaxis es escribir mal una instrucción.",
+    question: "¿Qué es un error de sintaxis en programación?",
+    options: ["Un virus en la computadora", "Un fallo de hardware", "Escribir mal el código, incumpliendo las reglas del lenguaje", "Un cable desconectado"],
+    correctIndex: 2
+  },
+  {
+    concept: "Compilar vs Interpretar",
+    title: "Ejecución de Código",
+    description: "Compilar traduce todo el código de una vez, interpretar lo traduce línea por línea al momento de ejecutarse.",
+    question: "¿Qué hace un lenguaje interpretado?",
+    options: ["Traduce y ejecuta el código línea por línea", "Convierte todo a un archivo .exe", "Borra el código fuente", "Imprime el código en papel"],
+    correctIndex: 0
+  },
+  {
+    concept: "IDE",
+    title: "Entorno de Desarrollo",
+    description: "Un software que proporciona herramientas completas para los programadores, como editor de código, depurador y compilador.",
+    question: "¿Qué significan las siglas IDE?",
+    options: ["Internet Data Editor", "Integrated Development Environment", "Internal Digital Engine", "International Display Error"],
+    correctIndex: 1
+  },
+  {
+    concept: "Debug",
+    title: "Depuración de Código",
+    description: "El proceso de identificar y corregir errores (bugs) en el código de un programa.",
+    question: "¿Qué hace un programador al depurar (debug) un programa?",
+    options: ["Le agrega virus", "Busca y corrige los errores en el código", "Cambia el color de la pantalla", "Aumenta la memoria RAM"],
+    correctIndex: 1
+  },
+  {
+    concept: "Array",
+    title: "Arreglo o Vector",
+    description: "Una estructura de datos que almacena una colección de elementos, generalmente del mismo tipo, en un orden específico.",
+    question: "¿Qué es un Array en programación?",
+    options: ["Una lista ordenada de elementos", "Un tipo de monitor", "Un error del sistema", "Una marca de mouse"],
+    correctIndex: 0
+  },
+  {
+    concept: "String",
+    title: "Cadena de Texto",
+    description: "En programación, un String es una secuencia de caracteres usada para representar texto.",
+    question: "¿Qué almacena una variable de tipo String?",
+    options: ["Solo números enteros", "Texto o cadena de caracteres", "Imágenes en 3D", "Direcciones IP"],
+    correctIndex: 1
+  },
+  {
+    concept: "Boolean",
+    title: "Valor Booleano",
+    description: "Un tipo de dato lógico que solo puede tener dos valores: Verdadero (True) o Falso (False).",
+    question: "¿Qué valores puede tomar un Booleano?",
+    options: ["Cualquier número", "Rojo o Azul", "Verdadero (True) o Falso (False)", "Días de la semana"],
+    correctIndex: 2
+  },
+  {
+    concept: "If-Else",
+    title: "Estructura Condicional",
+    description: "Permite al programa tomar decisiones, ejecutando un código si se cumple una condición, o de lo contrario ejecutando otro.",
+    question: "¿Para qué sirve un bloque 'If-Else'?",
+    options: ["Para multiplicar números", "Para tomar decisiones lógicas en el código", "Para apagar la computadora", "Para borrar archivos"],
+    correctIndex: 1
+  },
+  {
+    concept: "Servidor Web",
+    title: "Web Server",
+    description: "Software o hardware que almacena y entrega el contenido de los sitios web a los navegadores de los usuarios.",
+    question: "¿Cuál es la función de un servidor web?",
+    options: ["Limpiar virus", "Entregar páginas web a los navegadores que las solicitan", "Cargar el celular", "Imprimir fotos"],
+    correctIndex: 1
+  },
+  {
+    concept: "Navegador Web",
+    title: "Browser",
+    description: "Un programa de software utilizado para acceder, recuperar y ver información en la World Wide Web.",
+    question: "¿Cuál de los siguientes es un Navegador Web?",
+    options: ["Windows", "Google Chrome", "Excel", "Photoshop"],
+    correctIndex: 1
+  },
+  {
+    concept: "Motor de Búsqueda",
+    title: "Search Engine",
+    description: "Un sistema informático que busca información en la World Wide Web según los términos ingresados por el usuario.",
+    question: "¿Cuál de estos es un motor de búsqueda?",
+    options: ["Google", "Word", "El Teclado", "Paint"],
+    correctIndex: 0
+  },
+  {
+    concept: "Open Source",
+    title: "Código Abierto",
+    description: "Modelo de desarrollo de software donde el código fuente está disponible públicamente para que cualquiera lo vea, modifique y distribuya.",
+    question: "¿Qué significa que un programa sea Open Source?",
+    options: ["Que siempre tiene virus", "Que su código fuente es público y modificable", "Que solo funciona de día", "Que cuesta mucho dinero"],
+    correctIndex: 1
+  },
+  {
+    concept: "Licencia de Software",
+    title: "Derechos de Uso",
+    description: "Un contrato legal que establece cómo se puede utilizar, modificar y distribuir un programa informático.",
+    question: "¿Qué define una licencia de software?",
+    options: ["El color del icono", "Los términos legales para su uso y distribución", "La velocidad de carga", "El tamaño en disco"],
+    correctIndex: 1
+  },
+  {
+    concept: "Freeware",
+    title: "Software Gratuito",
+    description: "Software que se distribuye sin costo, pero su código fuente no está disponible para modificación.",
+    question: "¿Qué diferencia al Freeware del Open Source?",
+    options: ["El Freeware es gratis pero su código es cerrado (privado)", "El Freeware cuesta dinero", "El Freeware solo es para Mac", "No hay diferencia"],
+    correctIndex: 0
+  },
+  {
+    concept: "Ping vs FPS",
+    title: "Juegos Online",
+    description: "Ping es el retraso de la red en milisegundos, FPS son los fotogramas visuales por segundo. Ping bajo y FPS alto es lo ideal.",
+    question: "En videojuegos online, ¿qué es lo ideal?",
+    options: ["Ping alto y FPS bajo", "Ping bajo y FPS alto", "Que ambos sean 0", "No importan los FPS"],
+    correctIndex: 1
+  },
+  {
+    concept: "Mac Address",
+    title: "Dirección Física",
+    description: "Un identificador único asignado a las interfaces de red de un dispositivo para comunicaciones en red.",
+    question: "¿Qué es una dirección MAC?",
+    options: ["Una computadora de Apple", "La dirección física única de una tarjeta de red", "Una dirección de correo", "Un tipo de hamburguesa"],
+    correctIndex: 1
+  },
+  {
+    concept: "IPv4 vs IPv6",
+    title: "Protocolo de Internet",
+    description: "IPv4 usa direcciones numéricas de 32 bits. Como se agotaron, se creó IPv6 que usa 128 bits e incluye letras.",
+    question: "¿Por qué se creó el estándar IPv6?",
+    options: ["Para hacerlo más difícil", "Porque las direcciones IPv4 se estaban agotando", "Para vender nuevos routers", "Para borrar el internet antiguo"],
+    correctIndex: 1
+  },
+  {
+    concept: "Ancho de Banda vs Velocidad",
+    title: "Redes",
+    description: "El ancho de banda es la capacidad de la tubería de datos, la velocidad es qué tan rápido fluyen realmente los datos.",
+    question: "Si comparamos el internet con una tubería de agua, ¿qué sería el ancho de banda?",
+    options: ["El color del agua", "El grosor o diámetro de la tubería", "La temperatura del agua", "El costo de la tubería"],
+    correctIndex: 1
+  },
+  {
+    concept: "Ciberseguridad",
+    title: "Seguridad Informática",
+    description: "La práctica de proteger sistemas, redes y programas de ataques digitales.",
+    question: "¿Cuál es el objetivo de un ciberataque?",
+    options: ["Limpiar el polvo de la PC", "Acceder, alterar o destruir información sensible", "Actualizar el reloj", "Mejorar la conexión"],
+    correctIndex: 1
+  },
+  {
+    concept: "Ransomware",
+    title: "Secuestro de Datos",
+    description: "Un tipo de software malicioso que bloquea el acceso a los datos de la víctima, exigiendo un rescate para liberarlos.",
+    question: "¿Qué caracteriza a un ataque de Ransomware?",
+    options: ["Borra todos los juegos", "Secuestra la información y pide un rescate económico", "Apaga el monitor", "Imprime hojas en blanco"],
+    correctIndex: 1
+  },
+  {
+    concept: "DDoS",
+    title: "Ataque de Denegación",
+    description: "Un ataque que busca saturar un servidor o red con tráfico falso para que no pueda responder a usuarios legítimos.",
+    question: "¿Qué ocurre durante un ataque DDoS?",
+    options: ["Se va la luz eléctrica", "Se inunda de tráfico un servidor hasta colapsarlo", "Se roban las contraseñas", "Se cambia el fondo de pantalla"],
+    correctIndex: 1
+  },
+  {
+    concept: "Framework",
+    title: "Marco de Trabajo",
+    description: "Una estructura base de código que proporciona herramientas y librerías predefinidas para acelerar el desarrollo.",
+    question: "¿Para qué usan los programadores un Framework?",
+    options: ["Para crear virus", "Para no tener que programar todo desde cero y ahorrar tiempo", "Para escribir más lento", "Para jugar videojuegos"],
+    correctIndex: 1
+  },
+  {
+    concept: "Librería (Library)",
+    title: "Biblioteca de Código",
+    description: "Un conjunto de funciones o códigos preescritos que los programadores pueden usar para tareas específicas.",
+    question: "¿Qué es una librería en programación?",
+    options: ["Una tienda de libros", "Un conjunto de código reutilizable para tareas específicas", "Un tipo de disco duro", "Un antivirus"],
+    correctIndex: 1
+  },
+  {
+    concept: "SQL",
+    title: "Lenguaje de Consultas",
+    description: "Structured Query Language, es el lenguaje estándar utilizado para gestionar y consultar bases de datos relacionales.",
+    question: "¿Qué tipo de bases de datos utilizan principalmente SQL?",
+    options: ["Bases de datos relacionales (con tablas)", "Bases de datos de imágenes", "Archivos de audio", "Bases de datos de juegos"],
+    correctIndex: 0
+  },
+  {
+    concept: "NoSQL",
+    title: "Bases de Datos No Relacionales",
+    description: "Sistemas de bases de datos que no usan tablas relacionales, ideales para almacenar datos no estructurados a gran escala.",
+    question: "¿Cuál es una ventaja de las bases de datos NoSQL?",
+    options: ["Son más lentas", "Son ideales para datos muy flexibles o no estructurados", "No guardan información", "Solo funcionan sin internet"],
+    correctIndex: 1
+  },
+  {
+    concept: "Big Data",
+    title: "Macrodatos",
+    description: "Término que describe el enorme volumen de datos que inunda los negocios cada día, y cómo se analizan para tomar decisiones.",
+    question: "¿Qué busca el análisis de Big Data?",
+    options: ["Encontrar patrones útiles en volúmenes masivos de información", "Borrar archivos grandes", "Aumentar el tamaño de la pantalla", "Acelerar el Wi-Fi"],
+    correctIndex: 0
+  },
+  {
+    concept: "Algoritmo Genético",
+    title: "Inteligencia Artificial",
+    description: "Un método de búsqueda y optimización basado en el proceso biológico de evolución natural (mutación y selección).",
+    question: "¿En qué se inspiran los algoritmos genéticos?",
+    options: ["En la teoría de la relatividad", "En la evolución biológica y selección natural", "En la receta del pan", "En la construcción de edificios"],
+    correctIndex: 1
+  },
+  {
+    concept: "Machine Learning",
+    title: "Aprendizaje Automático",
+    description: "Una rama de la inteligencia artificial que permite a las computadoras aprender de los datos sin ser programadas explícitamente.",
+    question: "¿Cómo aprenden los sistemas de Machine Learning?",
+    options: ["Leyendo libros", "Entrenándose con grandes cantidades de datos", "Copiando a otros robots", "Viendo videos"],
     correctIndex: 1
   }
 ];
-
-
-class Pickup {
-  constructor(type, scaledTileSize, column, row, pacman, mazeDiv, points) {
-    this.type = type;
-    this.pacman = pacman;
-    this.mazeDiv = mazeDiv;
-    this.points = points;
-    this.nearPacman = false;
-
-    this.fruitImages = {
-      100: 'cherry',
-      300: 'strawberry',
-      500: 'orange',
-      700: 'apple',
-      1000: 'melon',
-      2000: 'galaxian',
-      3000: 'bell',
-      5000: 'key',
-    };
-
-    this.setStyleMeasurements(type, scaledTileSize, column, row, points);
-  }
-
-  /**
-   * Resets the pickup's visibility
-   */
-  reset() {
-    this.animationTarget.style.visibility = (this.type === 'fruit')
-      ? 'hidden' : 'visible';
-  }
-
-  /**
-   * Sets various style measurements for the pickup depending on its type
-   * @param {('pacdot'|'powerPellet'|'fruit')} type - The classification of pickup
-   * @param {number} scaledTileSize
-   * @param {number} column
-   * @param {number} row
-   * @param {number} points
-   */
-  setStyleMeasurements(type, scaledTileSize, column, row, points) {
-    if (type === 'pacdot') {
-      this.size = scaledTileSize * 0.25;
-      this.x = (column * scaledTileSize) + ((scaledTileSize / 8) * 3);
-      this.y = (row * scaledTileSize) + ((scaledTileSize / 8) * 3);
-    } else if (type === 'powerPellet') {
-      this.size = scaledTileSize;
-      this.x = (column * scaledTileSize);
-      this.y = (row * scaledTileSize);
-    } else {
-      this.size = scaledTileSize * 2;
-      this.x = (column * scaledTileSize) - (scaledTileSize * 0.5);
-      this.y = (row * scaledTileSize) - (scaledTileSize * 0.5);
-    }
-
-    this.center = {
-      x: column * scaledTileSize,
-      y: row * scaledTileSize,
-    };
-
-    this.animationTarget = document.createElement('div');
-    this.animationTarget.style.position = 'absolute';
-    this.animationTarget.style.backgroundSize = `${this.size}px`;
-    this.animationTarget.style.backgroundImage = this.determineImage(
-      type, points,
-    );
-    this.animationTarget.style.height = `${this.size}px`;
-    this.animationTarget.style.width = `${this.size}px`;
-    this.animationTarget.style.top = `${this.y}px`;
-    this.animationTarget.style.left = `${this.x}px`;
-    this.mazeDiv.appendChild(this.animationTarget);
-
-    if (type === 'powerPellet') {
-      this.animationTarget.classList.add('power-pellet');
-    }
-
-    this.reset();
-  }
-
-  /**
-   * Determines the Pickup image based on type and point value
-   * @param {('pacdot'|'powerPellet'|'fruit')} type - The classification of pickup
-   * @param {Number} points
-   * @returns {String}
-   */
-  determineImage(type, points) {
-    let image = '';
-
-    if (type === 'fruit') {
-      image = this.fruitImages[points] || 'cherry';
-    } else {
-      image = type;
-    }
-
-    return `url(app/style/graphics/spriteSheets/pickups/${image}.svg)`;
-  }
-
-  /**
-   * Shows a bonus fruit, resetting its point value and image
-   * @param {number} points
-   */
-  showFruit(points) {
-    this.points = points;
-    this.animationTarget.style.backgroundImage = this.determineImage(
-      this.type, points,
-    );
-    this.animationTarget.style.visibility = 'visible';
-  }
-
-  /**
-   * Makes the fruit invisible (happens if Pacman was too slow)
-   */
-  hideFruit() {
-    this.animationTarget.style.visibility = 'hidden';
-  }
-
-  /**
-   * Returns true if the Pickup is touching a bounding box at Pacman's center
-   * @param {({ x: number, y: number, size: number})} pickup
-   * @param {({ x: number, y: number, size: number})} originalPacman
-   */
-  checkForCollision(pickup, originalPacman) {
-    const pacman = Object.assign({}, originalPacman);
-
-    pacman.x += (pacman.size * 0.25);
-    pacman.y += (pacman.size * 0.25);
-    pacman.size /= 2;
-
-    return (pickup.x < pacman.x + pacman.size
-      && pickup.x + pickup.size > pacman.x
-      && pickup.y < pacman.y + pacman.size
-      && pickup.y + pickup.size > pacman.y);
-  }
-
-  /**
-   * Checks to see if the pickup is close enough to Pacman to be considered for collision detection
-   * @param {number} maxDistance - The maximum distance Pacman can travel per cycle
-   * @param {({ x:number, y:number })} pacmanCenter - The center of Pacman's hitbox
-   * @param {Boolean} debugging - Flag to change the appearance of pickups for testing
-   */
-  checkPacmanProximity(maxDistance, pacmanCenter, debugging) {
-    if (this.animationTarget.style.visibility !== 'hidden') {
-      const distance = Math.sqrt(
-        ((this.center.x - pacmanCenter.x) ** 2)
-        + ((this.center.y - pacmanCenter.y) ** 2),
-      );
-
-      this.nearPacman = (distance <= maxDistance);
-
-      if (debugging) {
-        this.animationTarget.style.background = this.nearPacman
-          ? 'lime' : 'red';
-      }
-    }
-  }
-
-  /**
-   * Checks if the pickup is visible and close to Pacman
-   * @returns {Boolean}
-   */
-  shouldCheckForCollision() {
-    return this.animationTarget.style.visibility !== 'hidden'
-      && this.nearPacman;
-  }
-
-  /**
-   * If the Pickup is still visible, it checks to see if it is colliding with Pacman.
-   * It will turn itself invisible and cease collision-detection after the first
-   * collision with Pacman.
-   */
-  update() {
-    if (this.shouldCheckForCollision()) {
-      if (this.checkForCollision(
-        {
-          x: this.x,
-          y: this.y,
-          size: this.size,
-        }, {
-          x: this.pacman.position.left,
-          y: this.pacman.position.top,
-          size: this.pacman.measurement,
-        },
-      )) {
-        this.animationTarget.style.visibility = 'hidden';
-        window.dispatchEvent(new CustomEvent('awardPoints', {
-          detail: {
-            points: this.points,
-            type: this.type,
-            pickup: this,
-          },
-        }));
-
-        if (this.type === 'pacdot') {
-          window.dispatchEvent(new Event('dotEaten'));
-        } else if (this.type === 'powerPellet') {
-          window.dispatchEvent(new Event('dotEaten'));
-          window.dispatchEvent(new Event('powerUp'));
-        }
-      }
-    }
-  }
-}
 
 
 class CharacterUtil {
@@ -3956,6 +4153,208 @@ class Timer {
             timer: this,
           },
         }));
+      }
+    }
+  }
+}
+
+
+class Pickup {
+  constructor(type, scaledTileSize, column, row, pacman, mazeDiv, points) {
+    this.type = type;
+    this.pacman = pacman;
+    this.mazeDiv = mazeDiv;
+    this.points = points;
+    this.nearPacman = false;
+
+    this.fruitImages = {
+      100: 'cherry',
+      300: 'strawberry',
+      500: 'orange',
+      700: 'apple',
+      1000: 'melon',
+      2000: 'galaxian',
+      3000: 'bell',
+      5000: 'key',
+    };
+
+    this.setStyleMeasurements(type, scaledTileSize, column, row, points);
+  }
+
+  /**
+   * Resets the pickup's visibility
+   */
+  reset() {
+    this.animationTarget.style.visibility = (this.type === 'fruit')
+      ? 'hidden' : 'visible';
+  }
+
+  /**
+   * Sets various style measurements for the pickup depending on its type
+   * @param {('pacdot'|'powerPellet'|'fruit')} type - The classification of pickup
+   * @param {number} scaledTileSize
+   * @param {number} column
+   * @param {number} row
+   * @param {number} points
+   */
+  setStyleMeasurements(type, scaledTileSize, column, row, points) {
+    if (type === 'pacdot') {
+      this.size = scaledTileSize * 0.25;
+      this.x = (column * scaledTileSize) + ((scaledTileSize / 8) * 3);
+      this.y = (row * scaledTileSize) + ((scaledTileSize / 8) * 3);
+    } else if (type === 'powerPellet') {
+      this.size = scaledTileSize;
+      this.x = (column * scaledTileSize);
+      this.y = (row * scaledTileSize);
+    } else {
+      this.size = scaledTileSize * 2;
+      this.x = (column * scaledTileSize) - (scaledTileSize * 0.5);
+      this.y = (row * scaledTileSize) - (scaledTileSize * 0.5);
+    }
+
+    this.center = {
+      x: column * scaledTileSize,
+      y: row * scaledTileSize,
+    };
+
+    this.animationTarget = document.createElement('div');
+    this.animationTarget.style.position = 'absolute';
+    this.animationTarget.style.backgroundSize = `${this.size}px`;
+    this.animationTarget.style.backgroundImage = this.determineImage(
+      type, points,
+    );
+    this.animationTarget.style.height = `${this.size}px`;
+    this.animationTarget.style.width = `${this.size}px`;
+    this.animationTarget.style.top = `${this.y}px`;
+    this.animationTarget.style.left = `${this.x}px`;
+    this.mazeDiv.appendChild(this.animationTarget);
+
+    if (type === 'powerPellet') {
+      this.animationTarget.classList.add('power-pellet');
+    }
+
+    this.reset();
+  }
+
+  /**
+   * Determines the Pickup image based on type and point value
+   * @param {('pacdot'|'powerPellet'|'fruit')} type - The classification of pickup
+   * @param {Number} points
+   * @returns {String}
+   */
+  determineImage(type, points) {
+    let image = '';
+
+    if (type === 'fruit') {
+      image = this.fruitImages[points] || 'cherry';
+    } else {
+      image = type;
+    }
+
+    return `url(app/style/graphics/spriteSheets/pickups/${image}.svg)`;
+  }
+
+  /**
+   * Shows a bonus fruit, resetting its point value and image
+   * @param {number} points
+   */
+  showFruit(points) {
+    this.points = points;
+    this.animationTarget.style.backgroundImage = this.determineImage(
+      this.type, points,
+    );
+    this.animationTarget.style.visibility = 'visible';
+  }
+
+  /**
+   * Makes the fruit invisible (happens if Pacman was too slow)
+   */
+  hideFruit() {
+    this.animationTarget.style.visibility = 'hidden';
+  }
+
+  /**
+   * Returns true if the Pickup is touching a bounding box at Pacman's center
+   * @param {({ x: number, y: number, size: number})} pickup
+   * @param {({ x: number, y: number, size: number})} originalPacman
+   */
+  checkForCollision(pickup, originalPacman) {
+    const pacman = Object.assign({}, originalPacman);
+
+    pacman.x += (pacman.size * 0.25);
+    pacman.y += (pacman.size * 0.25);
+    pacman.size /= 2;
+
+    return (pickup.x < pacman.x + pacman.size
+      && pickup.x + pickup.size > pacman.x
+      && pickup.y < pacman.y + pacman.size
+      && pickup.y + pickup.size > pacman.y);
+  }
+
+  /**
+   * Checks to see if the pickup is close enough to Pacman to be considered for collision detection
+   * @param {number} maxDistance - The maximum distance Pacman can travel per cycle
+   * @param {({ x:number, y:number })} pacmanCenter - The center of Pacman's hitbox
+   * @param {Boolean} debugging - Flag to change the appearance of pickups for testing
+   */
+  checkPacmanProximity(maxDistance, pacmanCenter, debugging) {
+    if (this.animationTarget.style.visibility !== 'hidden') {
+      const distance = Math.sqrt(
+        ((this.center.x - pacmanCenter.x) ** 2)
+        + ((this.center.y - pacmanCenter.y) ** 2),
+      );
+
+      this.nearPacman = (distance <= maxDistance);
+
+      if (debugging) {
+        this.animationTarget.style.background = this.nearPacman
+          ? 'lime' : 'red';
+      }
+    }
+  }
+
+  /**
+   * Checks if the pickup is visible and close to Pacman
+   * @returns {Boolean}
+   */
+  shouldCheckForCollision() {
+    return this.animationTarget.style.visibility !== 'hidden'
+      && this.nearPacman;
+  }
+
+  /**
+   * If the Pickup is still visible, it checks to see if it is colliding with Pacman.
+   * It will turn itself invisible and cease collision-detection after the first
+   * collision with Pacman.
+   */
+  update() {
+    if (this.shouldCheckForCollision()) {
+      if (this.checkForCollision(
+        {
+          x: this.x,
+          y: this.y,
+          size: this.size,
+        }, {
+          x: this.pacman.position.left,
+          y: this.pacman.position.top,
+          size: this.pacman.measurement,
+        },
+      )) {
+        this.animationTarget.style.visibility = 'hidden';
+        window.dispatchEvent(new CustomEvent('awardPoints', {
+          detail: {
+            points: this.points,
+            type: this.type,
+            pickup: this,
+          },
+        }));
+
+        if (this.type === 'pacdot') {
+          window.dispatchEvent(new Event('dotEaten'));
+        } else if (this.type === 'powerPellet') {
+          window.dispatchEvent(new Event('dotEaten'));
+          window.dispatchEvent(new Event('powerUp'));
+        }
       }
     }
   }

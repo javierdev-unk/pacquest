@@ -1,0 +1,209 @@
+@import "variables";
+
+.trivia-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  transition: opacity 0.3s ease;
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: none !important;
+  }
+
+  &.modal-correct .trivia-content {
+    border-color: #00ff00;
+    box-shadow: 0 0 40px rgba(0, 255, 0, 0.4);
+    
+    #concept-title { color: #00ff00 !important; }
+  }
+
+  &.modal-incorrect .trivia-content {
+    border-color: #ff4444;
+    box-shadow: 0 0 40px rgba(255, 68, 68, 0.4);
+    
+    #concept-title { color: #ff4444 !important; }
+  }
+
+  .trivia-content {
+    position: relative;
+    background: rgba(14, 18, 25, 0.85);
+    border: 6px solid #ffd700;
+    border-radius: 40px;
+    padding: 60px 40px;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    color: white;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    /* Corner Decorations */
+    .corner-decoration {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .icon {
+        width: 32px;
+        height: 32px;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      .dotted-line {
+        height: 0;
+        border-top: 3px dotted #ffd700;
+        width: 40px;
+      }
+
+      &.top-left {
+        top: 20px;
+        left: 20px;
+        .pacman-icon { background-image: url('app/style/graphics/spriteSheets/characters/pacman/pacman_right.svg'); }
+      }
+
+      &.top-right {
+        top: 20px;
+        right: 20px;
+        flex-direction: row-reverse;
+        .blinky-icon { background-image: url('app/style/graphics/spriteSheets/characters/ghosts/blinky/blinky_left.svg'); }
+        .dotted-line { border-top-color: #ff0000; }
+      }
+
+      &.bottom-left {
+        bottom: 20px;
+        left: 20px;
+        .pacman-icon { background-image: url('app/style/graphics/spriteSheets/characters/pacman/pacman_right.svg'); }
+      }
+
+      &.bottom-right {
+        bottom: 20px;
+        right: 20px;
+        flex-direction: row-reverse;
+        .pinky-icon { background-image: url('app/style/graphics/spriteSheets/characters/ghosts/pinky/pinky_left.svg'); }
+        .dotted-line { border-top-color: #ffb8ff; }
+      }
+    }
+
+    .trivia-screen {
+      animation: fadeIn 0.5s ease;
+      &.hidden {
+        display: none !important;
+      }
+    }
+
+    h1 {
+      font-family: "Press Start 2P", cursive;
+      font-size: 1.8rem;
+      color: #ffd700;
+      margin-bottom: 35px;
+      line-height: 1.2;
+      text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      font-family: "Press Start 2P", cursive;
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    p {
+      font-family: "Inter", sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      color: #eeefff;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .trivia-options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .btn-container {
+       margin-top: 20px;
+       display: flex;
+       justify-content: center;
+    }
+
+    .trivia-btn, .option-btn {
+      background: rgba(0, 0, 0, 0.6);
+      border: 3px solid #ffd700;
+      color: white;
+      padding: 18px 30px;
+      font-family: "Press Start 2P", cursive;
+      font-size: 0.8rem;
+      cursor: pointer;
+      border-radius: 15px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+
+      &:hover {
+        background: #ffd700;
+        color: #000;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+      }
+
+      &:active {
+        transform: translateY(-1px);
+      }
+    }
+
+    .option-btn {
+      font-size: 0.6rem;
+      text-align: left;
+      width: 100%;
+      padding: 20px;
+    }
+
+    #result-text {
+      font-family: "Press Start 2P", cursive;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
+    #lives-lost-text {
+      font-family: "Inter", sans-serif;
+      color: #ff4444;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    #countdown-text {
+      font-family: "Press Start 2P", cursive;
+      font-size: 5rem;
+      color: #ffd700;
+      margin: 30px 0;
+      animation: pulse 1s infinite;
+      text-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}

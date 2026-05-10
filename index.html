@@ -34,13 +34,21 @@
     </div>
 
     <div class='header-buttons'>
-      <button>
-        <i id='pause-button' class='material-icons'>
-          pause
-        </i>
+      <button id='pause-btn-wrapper' aria-label='Pausa'>
+        <!-- Pause icon SVG -->
+        <svg id='pause-button' class='header-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'>
+          <rect x='5' y='3' width='4' height='18' rx='1'/>
+          <rect x='15' y='3' width='4' height='18' rx='1'/>
+        </svg>
       </button>
-      <button>
-        <i id='sound-button' class='material-icons'></i>
+      <button id='sound-btn-wrapper' aria-label='Volumen'>
+        <!-- Volume icon — swapped by JS via #sound-button -->
+        <svg id='sound-button' class='header-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'>
+          <!-- volume_up paths (default) -->
+          <path id='sound-icon-path1' d='M3 9v6h4l5 5V4L7 9H3z'/>
+          <path id='sound-icon-path2' d='M16.5 12A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z'/>
+          <path id='sound-icon-path3' d='M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z'/>
+        </svg>
       </button>
     </div>
 
@@ -80,21 +88,29 @@
 
     <div id='movement-buttons' class='movement-buttons'>
       <div class='row'>
-        <button id='button-up' class='button-up'>
-          <i class='material-icons'>keyboard_arrow_up</i>
+        <button id='button-up' class='button-up' aria-label='Arriba'>
+          <svg class='arrow-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
+            <path d='M7 14l5-5 5 5z'/>
+          </svg>
         </button>
       </div>
       <div class='row'>
-        <button id='button-left' class='button-left'>
-          <i class='material-icons'>keyboard_arrow_left</i>
+        <button id='button-left' class='button-left' aria-label='Izquierda'>
+          <svg class='arrow-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
+            <path d='M14 7l-5 5 5 5z'/>
+          </svg>
         </button>
-        <button id='button-right' class='button-right'>
-          <i class='material-icons'>keyboard_arrow_right</i>
+        <button id='button-right' class='button-right' aria-label='Derecha'>
+          <svg class='arrow-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
+            <path d='M10 17l5-5-5-5z'/>
+          </svg>
         </button>
       </div>
       <div class='row'>
-        <button id='button-down' class='button-down'>
-          <i class='material-icons'>keyboard_arrow_down</i>
+        <button id='button-down' class='button-down' aria-label='Abajo'>
+          <svg class='arrow-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
+            <path d='M7 10l5 5 5-5z'/>
+          </svg>
         </button>
       </div>
     </div>

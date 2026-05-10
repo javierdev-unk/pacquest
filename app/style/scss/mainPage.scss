@@ -48,6 +48,7 @@ body {
   width: 100%;
   display: flex;
   gap: 4px;
+  z-index: 10;
 
   button {
     background: none;
@@ -57,26 +58,21 @@ body {
     outline: none;
     padding: 4px;
     line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .material-icons {
-      font-family: 'Material Icons';
-      font-size: 36px;
-      font-style: normal;
-      font-weight: normal;
-      display: inline-block;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
-      -webkit-font-feature-settings: 'liga';
-      font-feature-settings: 'liga';
-      -webkit-font-smoothing: antialiased;
+  .header-icon {
+    width: 36px;
+    height: 36px;
+    fill: white;
+    display: block;
+    flex-shrink: 0;
 
-      @media (max-width: 480px) {
-        font-size: 28px;
-      }
+    @media (max-width: 480px) {
+      width: 28px;
+      height: 28px;
     }
   }
 }
@@ -316,7 +312,6 @@ body {
   height: 34%;
   position: fixed;
   width: 100%;
-  /* ensure the button area doesn't overflow the screen */
   box-sizing: border-box;
   padding-bottom: env(safe-area-inset-bottom, 0);
 
@@ -339,11 +334,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
 
     @media (max-width: 480px) {
-      height: 10vw;
-      width: 10vw;
+      height: 11vw;
+      width: 11vw;
       border-width: 2px;
     }
 
@@ -352,6 +347,13 @@ body {
         closest-side, $transparent-gray, transparent,
       );
     }
+  }
+
+  .arrow-icon {
+    width: 90%;
+    height: 90%;
+    fill: $blue;
+    display: block;
   }
 
   .button-up {
@@ -367,7 +369,7 @@ body {
     margin-right: calc(7vh - 6px);
 
     @media (max-width: 480px) {
-      margin-right: calc(10vw - 4px);
+      margin-right: calc(11vw - 4px);
     }
   }
 
@@ -381,29 +383,6 @@ body {
     border-top: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-  }
-
-  .material-icons {
-    font-family: 'Material Icons';
-    font-size: 7vh;
-    font-style: normal;
-    font-weight: normal;
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    -webkit-font-feature-settings: 'liga';
-    font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-    margin: -3px;
-
-    @media (max-width: 480px) {
-      font-size: 8vw;
-      margin: 0;
-    }
   }
 }
 

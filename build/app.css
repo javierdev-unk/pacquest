@@ -46,36 +46,49 @@ body {
 }
 
 .header-buttons {
-  margin: 8px;
+  margin: 0;
+  padding: 6px 8px;
   position: absolute;
   width: 100%;
   display: flex;
-  gap: 4px;
+  gap: 2px;
   z-index: 10;
+  box-sizing: border-box;
 }
 .header-buttons button {
-  background: none;
-  border: 0;
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
   color: #fff;
   cursor: pointer;
   outline: none;
-  padding: 4px;
+  padding: 8px;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+@media (max-width: 600px) {
+  .header-buttons button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 6px;
+  }
 }
 .header-buttons .header-icon {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   fill: white;
   display: block;
   flex-shrink: 0;
 }
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .header-buttons .header-icon {
-    width: 28px;
-    height: 28px;
+    width: 34px;
+    height: 34px;
   }
 }
 
@@ -556,7 +569,7 @@ body {
   border-radius: 40px;
   padding: 60px 40px;
   width: 90%;
-  max-width: 600px;
+  max-width: min(600px, 96vw);
   max-height: 90vh;
   overflow-y: auto;
   text-align: center;
@@ -706,8 +719,8 @@ body {
   text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
-/* ===== RESPONSIVE: pantallas angostas (móviles) ===== */
-@media (max-width: 540px) {
+/* ===== RESPONSIVE: pantallas angostas (móviles) hasta 768px ===== */
+@media (max-width: 768px) {
   .trivia-modal {
     align-items: center;
     justify-content: center;
@@ -716,10 +729,10 @@ body {
   .trivia-modal .trivia-content {
     border-radius: 18px;
     border-width: 4px;
-    padding: 44px 18px 28px;
-    max-height: 60vh;
+    padding: 44px 16px 28px;
+    max-height: 62vh;
     width: 98%;
-    max-width: 98vw;
+    max-width: 98vw !important;
     overflow-y: auto;
   }
   .trivia-modal .trivia-content .corner-decoration .icon {
@@ -753,7 +766,7 @@ body {
   }
   .trivia-modal .trivia-content p {
     font-size: 0.9rem;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     line-height: 1.5;
   }
   .trivia-modal .trivia-content .trivia-options {

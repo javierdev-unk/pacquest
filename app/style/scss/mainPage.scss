@@ -43,36 +43,48 @@ body {
 }
 
 .header-buttons {
-  margin: 8px;
+  margin: 0;
+  padding: 6px 8px;
   position: absolute;
   width: 100%;
   display: flex;
-  gap: 4px;
+  gap: 2px;
   z-index: 10;
+  box-sizing: border-box;
 
   button {
-    background: none;
-    border: 0;
+    background: rgba(0,0,0,0.45);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
     color: $white;
     cursor: pointer;
     outline: none;
-    padding: 4px;
+    padding: 8px;
     line-height: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 48px;
+    min-height: 48px;
+    touch-action: manipulation;
+
+    @media (max-width: 600px) {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 6px;
+    }
   }
 
   .header-icon {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     fill: white;
     display: block;
     flex-shrink: 0;
 
-    @media (max-width: 480px) {
-      width: 28px;
-      height: 28px;
+    @media (max-width: 600px) {
+      width: 34px;
+      height: 34px;
     }
   }
 }

@@ -823,7 +823,7 @@ class GameCoordinator {
         this.soundManager.resumeAmbience();
         this.gameUi.style.filter = 'unset';
         this.pausedText.style.visibility = 'hidden';
-        this.pauseButton.innerHTML = 'pause';
+        this.setPauseButtonIcon('pause');
         this.activeTimers.forEach((timer) => {
           timer.resume();
         });
@@ -832,11 +832,26 @@ class GameCoordinator {
         this.soundManager.setAmbience('pause_beat', true);
         this.gameUi.style.filter = 'blur(5px)';
         this.pausedText.style.visibility = 'visible';
-        this.pauseButton.innerHTML = 'play_arrow';
+        this.setPauseButtonIcon('play');
         this.activeTimers.forEach((timer) => {
           timer.pause();
         });
       }
+    }
+  }
+
+  /**
+   * Sets the SVG icon for the pause button (pause bars or play triangle)
+   */
+  setPauseButtonIcon(state) {
+    const pauseSvg = document.getElementById('pause-button');
+    if (!pauseSvg) return;
+    if (state === 'pause') {
+      // Two vertical bars (pause)
+      pauseSvg.innerHTML = '<rect x="5" y="3" width="4" height="18" rx="1"/><rect x="15" y="3" width="4" height="18" rx="1"/>';
+    } else {
+      // Right-pointing triangle (play)
+      pauseSvg.innerHTML = '<path d="M8 5v14l11-7z"/>';
     }
   }
 

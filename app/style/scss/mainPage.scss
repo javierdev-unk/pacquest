@@ -53,8 +53,8 @@ body {
   box-sizing: border-box;
 
   button {
-    background: rgba(0,0,0,0.45);
-    border: 2px solid rgba(255,255,255,0.3);
+    background: rgba(0, 0, 0, 0.45);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     color: $white;
     cursor: pointer;
@@ -87,6 +87,15 @@ body {
       height: 34px;
     }
   }
+
+  /* Fullscreen button: hidden on desktop, visible only on narrow portrait */
+  .fullscreen-btn {
+    display: none;
+
+    @media (max-width: 700px) and (orientation: portrait) {
+      display: flex;
+    }
+  }
 }
 
 .paused-text {
@@ -114,9 +123,17 @@ body {
   }
 
   @keyframes blink {
-    0% {opacity: 0}
-    49% {opacity: 0}
-    50% {opacity: 1}
+    0% {
+      opacity: 0
+    }
+
+    49% {
+      opacity: 0
+    }
+
+    50% {
+      opacity: 1
+    }
   }
 
   .row {
@@ -163,7 +180,11 @@ body {
 
 @media (orientation: portrait) {
   .game-ui {
-    height: 66%;
+    height: 72%;
+  }
+
+  .movement-buttons {
+    height: 34%;
   }
 }
 
@@ -178,12 +199,16 @@ body {
 
 .left {
   left: 0;
-  transition: left $generic-duration ($generic-duration);
+  transition: left $generic-duration (
+    $generic-duration
+  );
 }
 
 .right {
   right: 0;
-  transition: right $generic-duration ($generic-duration);
+  transition: right $generic-duration (
+    $generic-duration
+  );
 }
 
 .main-menu-container {
@@ -296,32 +321,88 @@ body {
   z-index: -2;
 }
 
-._5 { left: 5%; }
-._10 { left: 10%; }
-._15 { left: 15%; }
-._20 { left: 20%; }
-._25 { left: 25%; }
-._30 { left: 30%; }
-._35 { left: 35%; }
-._40 { left: 40%; }
-._45 { left: 45%; }
-._50 { left: 50%; }
-._55 { left: 55%; }
-._60 { left: 60%; }
-._65 { left: 65%; }
-._70 { left: 70%; }
-._75 { left: 75%; }
-._80 { left: 80%; }
-._85 { left: 85%; }
-._90 { left: 90%; }
-._95 { left: 95%; }
+._5 {
+  left: 5%;
+}
+
+._10 {
+  left: 10%;
+}
+
+._15 {
+  left: 15%;
+}
+
+._20 {
+  left: 20%;
+}
+
+._25 {
+  left: 25%;
+}
+
+._30 {
+  left: 30%;
+}
+
+._35 {
+  left: 35%;
+}
+
+._40 {
+  left: 40%;
+}
+
+._45 {
+  left: 45%;
+}
+
+._50 {
+  left: 50%;
+}
+
+._55 {
+  left: 55%;
+}
+
+._60 {
+  left: 60%;
+}
+
+._65 {
+  left: 65%;
+}
+
+._70 {
+  left: 70%;
+}
+
+._75 {
+  left: 75%;
+}
+
+._80 {
+  left: 80%;
+}
+
+._85 {
+  left: 85%;
+}
+
+._90 {
+  left: 90%;
+}
+
+._95 {
+  left: 95%;
+}
 
 .movement-buttons {
   align-items: center;
   bottom: 0;
   display: flex;
   flex-direction: column;
-  height: 34%;
+  height: 30%;
   position: fixed;
   width: 100%;
   box-sizing: border-box;
@@ -348,16 +429,15 @@ body {
     justify-content: center;
     overflow: visible;
 
-    @media (max-width: 480px) {
-      height: 11vw;
-      width: 11vw;
+    @media (max-width: 700px) and (orientation: portrait) {
+      height: 13vw;
+      width: 13vw;
       border-width: 2px;
     }
 
     &:active {
-      background: radial-gradient(
-        closest-side, $transparent-gray, transparent,
-      );
+      background: radial-gradient(closest-side, $transparent-gray, transparent,
+        );
     }
   }
 
@@ -380,8 +460,8 @@ body {
     border-top-right-radius: 0;
     margin-right: calc(7vh - 6px);
 
-    @media (max-width: 480px) {
-      margin-right: calc(11vw - 4px);
+    @media (max-width: 700px) and (orientation: portrait) {
+      margin-right: calc(16vw - 4px);
     }
   }
 

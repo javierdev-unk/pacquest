@@ -1131,6 +1131,22 @@ class GameCoordinator {
     this.tileSize = 8;
     this.scale = this.determineScale(1);
     this.scaledTileSize = this.tileSize * this.scale;
+
+    // On portrait mobile, override scaledTileSize to fill the viewport properly.
+    // determineScale only uses integers (8, 16, 24…) which leaves too much empty space.
+    // We compute the ideal pixel tile size directly from the viewport.
+    const _vw = Math.min(document.documentElement.clientWidth, window.innerWidth || 0);
+    const _vh = Math.min(document.documentElement.clientHeight, window.innerHeight || 0);
+    if (_vh > _vw && _vw < 700) {
+      const byWidth = Math.floor(_vw * 0.93 / 28);   // 93% of viewport width / 28 tiles
+      const byHeight = Math.floor(_vh * 0.61 / 36);  // 61% of viewport height / 36 tiles
+      const idealTile = Math.max(1, Math.min(byWidth, byHeight));
+      if (idealTile > this.scaledTileSize) {
+        this.scaledTileSize = idealTile;
+        this.scale = idealTile / this.tileSize;
+      }
+    }
+
     this.firstGame = true;
 
     this.movementKeys = {
@@ -1205,6 +1221,32 @@ class GameCoordinator {
     this.soundButton.addEventListener(
       'click', this.soundButtonClick.bind(this),
     );
+
+    // Fullscreen button (only shown on narrow portrait screens)
+    const fullscreenBtn = document.getElementById('fullscreen-btn-wrapper');
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener('click', () => {
+        const el = document.documentElement;
+        if (!document.fullscreenElement) {
+          el.requestFullscreen && el.requestFullscreen();
+          el.webkitRequestFullscreen && el.webkitRequestFullscreen();
+        } else {
+          document.exitFullscreen && document.exitFullscreen();
+          document.webkitExitFullscreen && document.webkitExitFullscreen();
+        }
+      });
+      document.addEventListener('fullscreenchange', () => {
+        const icon = document.getElementById('fullscreen-icon');
+        if (!icon) return;
+        if (document.fullscreenElement) {
+          // Show exit-fullscreen icon (compress arrows)
+          icon.innerHTML = '<path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>';
+        } else {
+          // Show enter-fullscreen icon (expand arrows)
+          icon.innerHTML = '<path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>';
+        }
+      });
+    }
 
     const head = document.getElementsByTagName('head')[0];
     const link = document.createElement('link');
@@ -1658,6 +1700,9 @@ class GameCoordinator {
   setUiDimensions() {
     this.gameUi.style.fontSize = `${this.scaledTileSize}px`;
     this.rowTop.style.marginBottom = `${this.scaledTileSize}px`;
+    // Clear any leftover CSS transform from previous sessions
+    this.gameUi.style.transform = '';
+    this.gameUi.style.transformOrigin = '';
   }
 
   /**

@@ -91,6 +91,17 @@ body {
     height: 34px;
   }
 }
+.header-buttons {
+  /* Fullscreen button: hidden on desktop, visible only on narrow portrait */
+}
+.header-buttons .fullscreen-btn {
+  display: none;
+}
+@media (max-width: 700px) and (orientation: portrait) {
+  .header-buttons .fullscreen-btn {
+    display: flex;
+  }
+}
 
 .paused-text {
   align-items: center;
@@ -159,6 +170,9 @@ body {
 @media (orientation: portrait) {
   .game-ui {
     height: 66%;
+  }
+  .movement-buttons {
+    height: 34%;
   }
 }
 .loading-cover {
@@ -396,10 +410,10 @@ body {
   justify-content: center;
   overflow: visible;
 }
-@media (max-width: 480px) {
+@media (max-width: 700px) and (orientation: portrait) {
   .movement-buttons button {
-    height: 11vw;
-    width: 11vw;
+    height: 13vw;
+    width: 13vw;
     border-width: 2px;
   }
 }
@@ -423,9 +437,9 @@ body {
   border-top-right-radius: 0;
   margin-right: calc(7vh - 6px);
 }
-@media (max-width: 480px) {
+@media (max-width: 700px) and (orientation: portrait) {
   .movement-buttons .button-left {
-    margin-right: calc(11vw - 4px);
+    margin-right: calc(16vw - 4px);
   }
 }
 .movement-buttons .button-right {
